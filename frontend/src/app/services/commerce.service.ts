@@ -1,0 +1,2 @@
+import { Injectable } from '@angular/core'; import { HttpClient } from '@angular/common/http';
+@Injectable({ providedIn: 'root' }) export class CommerceService { private api = 'http://localhost:5000/api/commerce'; constructor(private http: HttpClient) { } upload(file: File) { const f = new FormData(); f.append('file', file); return this.http.post<any>(`${this.api}/upload`, f) } process(date: string) { return this.http.post<any>(`${this.api}/process/${date}`, {}) } quarantine() { return this.http.get<any[]>(`${this.api}/quarantine`) } }
